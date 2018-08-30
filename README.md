@@ -1,0 +1,2 @@
+# xMailer
+simple php mailer
