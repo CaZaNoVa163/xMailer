@@ -262,9 +262,16 @@ function x_check($email){
 								if($Xtype=='html'){$mail->IsHTML(true);}
 								else {$mail->IsHTML(false);}
 								if (!$mail->send()) {
-									$result .= "<td>".strtoupper($mail->ErrorInfo)."</td>";
-								}
-								else {
+									if (!$mail->isSendmail()) {
+										if (!$mail->isQmail()) {
+											$result .= "<td>".strtoupper($mail->ErrorInfo)."</td>";
+										}else{
+											$result .= "<td>OK - qmail</td>";
+										}
+									}else{
+										$result .= "<td>OK - sendmail</td>";
+									}
+								}else {
 									$result .= "<td>OK</td>";
 								}
 
